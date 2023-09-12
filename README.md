@@ -30,18 +30,6 @@ Ensure the presence of:
 - **Descriptive Statistics**:
 
     ```bash
-    Statistics for Date:
-    mean: 19602.0
-    median: 19602.0
-    std: None
-
-
-    Statistics for Product:
-    mean: None
-    median: None
-    std: None
-
-
     Statistics for Price:
     mean: 1.4333333333333331
     median: 1.2

@@ -19,11 +19,14 @@ def get_descriptive_statistics(data):
     stats = {}
     for col in data.columns:
         if data[col].dtype != pl.Object and col != "Date":
-            stats[col] = {
+            col_stats = {
                 "mean": data[col].mean(),
                 "median": data[col].median(),
                 "std": data[col].std()
             }
+            # Only include columns with at least one non-None value
+            if any(value is not None for value in col_stats.values()):
+                stats[col] = col_stats
     return stats
 
 def main():
