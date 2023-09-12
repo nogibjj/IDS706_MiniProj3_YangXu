@@ -55,11 +55,6 @@ Ensure the presence of:
     ```
 
 - **Data Visualization**:
-<<<<<<< HEAD
-
-=======
-
->>>>>>> 95df988b7c9f0da098f69dc63788444a4dbd55a8
   ![Price Distribution](Price_distribution.png)
 
 
