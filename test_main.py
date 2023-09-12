@@ -10,7 +10,7 @@ def test_load_data():
 
     # Check if known columns 'Product', 'Price', and 'Quantity' are present
     for col in ["Product", "Price", "Quantity"]:
-        assert data.has_column(col)
+        assert col in data.columns
 
 def test_get_descriptive_statistics():
     data = main.load_data()
