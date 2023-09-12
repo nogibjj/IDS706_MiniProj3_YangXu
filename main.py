@@ -16,17 +16,15 @@ def load_data():
     return pl.read_csv("dataset_sample.csv")
 
 def get_descriptive_statistics(data):
-    statistics = {}
+    stats = {}
     for col in data.columns:
-        if data[col].dtype != pl.Object:
-            col_stats = {
+        if data[col].dtype != pl.Object and col != "Date":
+            stats[col] = {
                 "mean": data[col].mean(),
                 "median": data[col].median(),
                 "std": data[col].std()
             }
-            if any(value is not None for value in col_stats.values()):
-                statistics[col] = col_stats
-    return statistics
+    return stats
 
 def main():
     data = load_data()
