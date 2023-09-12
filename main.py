@@ -1,9 +1,9 @@
-import pandas as pd
+import polars as pl
 import matplotlib.pyplot as plt
 
 def plot_data_distribution(data, column_name):
     plt.figure(figsize=(10, 6))
-    plt.hist(data[column_name], bins=10, edgecolor="k", alpha=0.7)
+    plt.hist(data[column_name].to_numpy(), bins=10, edgecolor="k", alpha=0.7)
     plt.title(f"Distribution of {column_name}")
     plt.xlabel(column_name)
     plt.ylabel("Frequency")
@@ -13,15 +13,27 @@ def plot_data_distribution(data, column_name):
     plt.show()
 
 def load_data():
-    return pd.read_csv("dataset_sample.csv")
+    return pl.read_csv("dataset_sample.csv")
 
 def get_descriptive_statistics(data):
-    return data.describe()
+    stats = {}
+    for col in data.columns:
+        if data[col].dtype != pl.Object:
+            stats[col] = {
+                "mean": data[col].mean(),
+                "median": data[col].median(),
+                "std": data[col].std()
+            }
+    return stats
 
 def main():
     data = load_data()
     stats = get_descriptive_statistics(data)
-    print(stats)
+    for col, values in stats.items():
+        print(f"Statistics for {col}:")
+        for stat, value in values.items():
+            print(f"{stat}: {value}")
+        print("\n")
 
     plot_data_distribution(data, "Price")
 
